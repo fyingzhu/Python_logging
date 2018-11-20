@@ -2,8 +2,9 @@
 Python logging模块使用配置文件记录日志
 
 ## 一、功能说明：
-    - 1、以时间命名日志，默认为按每天的日期命名，可配置；
+    - 1、日志以当前进程命名（如hello.py,则日志名字为hello）；每天凌晨按时间滚动、默认为按每天的日期命名以日志，如（今天是20181120，则滚动分割后日志名称为hello.2018-11-20；
     - 2、设置日志级别开关，可配置；
+    - 3、存在放当前工作目录的Log文件夹下，没有Log文件夹则自动创建。
 
 
 ## 二、使用说明：
@@ -14,7 +15,7 @@ Python logging模块使用配置文件记录日志
     这样其它模块只需要引用这个实例就可以了。
     在其它模块中，我们使用这样的语句引用logger对象：
     
-    from config import logger
+    from log_file import logger
 
     需要记录日志的时候，只需要使用logger.error()，logger.debug()类似的语句就好了。
 
@@ -30,7 +31,7 @@ cisdi 为一个实例，可自行修改。
 - [handler_timedrt]
     按时间回滚记录日志。
     
-    args=('log/cisdi' + '.log', 'midnight', 1, 0) 解析如下：
+    args=(name, 'midnight', 1, 0) 解析如下：
 
 **函数：**
     TimedRotatingFileHandler(filename, when='h', interval=1, backupCount=0, encoding=None, delay=False, utc=False)
